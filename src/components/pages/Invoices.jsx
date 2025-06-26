@@ -257,9 +257,8 @@ transition={{ duration: 0.3 }}
                             {invoice.invoiceNumber}
                           </h3>
                           <StatusBadge status={invoice.status} />
-                        </div>
+</div>
                         
-                        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600">
                           <div className="flex items-center gap-2">
                             <ApperIcon name="Calendar" size={16} />
