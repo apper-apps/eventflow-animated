@@ -172,35 +172,35 @@ const Reports = () => {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
-      transition={{ duration: 0.3 }}
-      className="space-y-6 max-w-full"
+transition={{ duration: 0.3 }}
+      className="space-y-4 sm:space-y-6 max-w-full"
     >
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <h1 className="text-3xl font-heading font-bold text-gray-900">Reports</h1>
-          <p className="text-gray-600 mt-1">Analytics and insights for your catering business</p>
+          <h1 className="text-2xl sm:text-3xl font-heading font-bold text-gray-900">Reports</h1>
+          <p className="text-sm sm:text-base text-gray-600 mt-1">Analytics and insights for your catering business</p>
         </div>
-        
-        <div className="flex items-center gap-3">
+<div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2 xs:gap-3">
           <select
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
-            className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+            className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px]"
           >
             <option value="3months">Last 3 Months</option>
             <option value="6months">Last 6 Months</option>
             <option value="12months">Last 12 Months</option>
           </select>
           
-          <Button variant="outline" icon="Download">
-            Export Report
+          <Button variant="outline" icon="Download" className="min-h-[44px]">
+            <span className="hidden xs:inline">Export Report</span>
+            <span className="xs:hidden">Export</span>
           </Button>
         </div>
       </div>
 
-      {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+{/* Key Metrics */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
         {[
           {
             label: 'Total Revenue',
@@ -250,16 +250,16 @@ const Reports = () => {
         ))}
       </div>
 
-      {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+{/* Charts */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
         {/* Revenue Chart */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <Card>
-            <h3 className="text-lg font-heading font-semibold text-gray-900 mb-6">
+<Card className="overflow-hidden">
+            <h3 className="text-base sm:text-lg font-heading font-semibold text-gray-900 mb-4 sm:mb-6">
               Monthly Revenue
             </h3>
             {data && (
@@ -279,8 +279,8 @@ const Reports = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <Card>
-            <h3 className="text-lg font-heading font-semibold text-gray-900 mb-6">
+<Card className="overflow-hidden">
+            <h3 className="text-base sm:text-lg font-heading font-semibold text-gray-900 mb-4 sm:mb-6">
               Events by Status
             </h3>
             {data && (
@@ -302,8 +302,8 @@ const Reports = () => {
         transition={{ delay: 0.5 }}
       >
         <Card>
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-heading font-semibold text-gray-900">
+<div className="flex items-center justify-between mb-4 sm:mb-6">
+            <h3 className="text-base sm:text-lg font-heading font-semibold text-gray-900">
               Popular Menu Items
             </h3>
             <Button variant="ghost" size="sm" icon="MoreHorizontal" />
@@ -315,18 +315,19 @@ const Reports = () => {
                 key={itemName}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + index * 0.05 }}
-                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <span className="text-sm font-semibold text-primary">#{index + 1}</span>
+transition={{ delay: 0.6 + index * 0.05 }}
+                className="flex items-center justify-between p-2.5 sm:p-3 bg-gray-50 rounded-lg"
+>
+                <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-xs sm:text-sm font-semibold text-primary">#{index + 1}</span>
                   </div>
-                  <span className="font-medium text-gray-900">{itemName}</span>
+                  <span className="font-medium text-gray-900 text-sm sm:text-base truncate">{itemName}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600">{count} orders</span>
-                  <div className="w-16 bg-gray-200 rounded-full h-2">
+                <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                  <span className="text-xs sm:text-sm text-gray-600 hidden xs:inline">{count} orders</span>
+                  <span className="text-xs text-gray-600 xs:hidden">{count}</span>
+<div className="w-12 sm:w-16 bg-gray-200 rounded-full h-2">
                     <div 
                       className="bg-primary h-2 rounded-full" 
                       style={{ 

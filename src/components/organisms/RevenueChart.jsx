@@ -35,12 +35,17 @@ const RevenueChart = () => {
           name: 'Revenue',
           data: data
         }],
-        options: {
+options: {
           chart: {
             type: 'area',
-            height: 300,
+            height: 250,
             toolbar: { show: false },
-            sparkline: { enabled: false }
+            sparkline: { enabled: false },
+            animations: {
+              enabled: true,
+              easing: 'easeinout',
+              speed: 800
+            }
           },
           colors: ['#2E7D6B'],
           fill: {
@@ -55,15 +60,17 @@ const RevenueChart = () => {
           dataLabels: { enabled: false },
           stroke: {
             curve: 'smooth',
-            width: 3
+            width: 2
           },
           xaxis: {
             categories: categories,
             labels: {
               style: {
                 colors: '#64748b',
-                fontSize: '12px'
-              }
+                fontSize: '11px'
+              },
+              rotate: -45,
+              maxHeight: 80
             }
           },
           yaxis: {
@@ -71,7 +78,7 @@ const RevenueChart = () => {
               formatter: (value) => `$${value.toLocaleString()}`,
               style: {
                 colors: '#64748b',
-                fontSize: '12px'
+                fontSize: '11px'
               }
             }
           },
@@ -82,8 +89,32 @@ const RevenueChart = () => {
           },
           grid: {
             borderColor: '#e2e8f0',
-            strokeDashArray: 4
-          }
+            strokeDashArray: 4,
+            padding: {
+              top: 0,
+              right: 0,
+              bottom: 10,
+              left: 0
+            }
+          },
+          responsive: [{
+            breakpoint: 640,
+            options: {
+              chart: {
+                height: 200
+              },
+              xaxis: {
+                labels: {
+                  fontSize: '10px'
+                }
+              },
+              yaxis: {
+                labels: {
+                  fontSize: '10px'
+                }
+              }
+            }
+          }]
         }
       });
     } catch (error) {
@@ -103,18 +134,18 @@ const RevenueChart = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
     >
-      <Card>
-        <div className="mb-6">
-          <h3 className="text-lg font-heading font-semibold text-gray-900">Revenue Overview</h3>
-          <p className="text-sm text-gray-600 mt-1">Monthly revenue trends</p>
+<Card className="overflow-hidden">
+        <div className="mb-4 sm:mb-6">
+          <h3 className="text-base sm:text-lg font-heading font-semibold text-gray-900">Revenue Overview</h3>
+          <p className="text-xs sm:text-sm text-gray-600 mt-1">Monthly revenue trends</p>
         </div>
         
         {chartData && (
           <Chart
             options={chartData.options}
-            series={chartData.series}
+series={chartData.series}
             type="area"
-            height={300}
+            height={250}
           />
         )}
       </Card>

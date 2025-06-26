@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { format } from 'date-fns';
-import { toast } from 'react-toastify';
-import Button from '@/components/atoms/Button';
-import Card from '@/components/atoms/Card';
-import StatusBadge from '@/components/molecules/StatusBadge';
-import SearchFilter from '@/components/molecules/SearchFilter';
-import LoadingCard from '@/components/molecules/LoadingCard';
-import EmptyState from '@/components/molecules/EmptyState';
-import ErrorState from '@/components/molecules/ErrorState';
-import ApperIcon from '@/components/ApperIcon';
-import eventService from '@/services/api/eventService';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { format } from "date-fns";
+import { toast } from "react-toastify";
+import eventService from "@/services/api/eventService";
+import ApperIcon from "@/components/ApperIcon";
+import EmptyState from "@/components/molecules/EmptyState";
+import SearchFilter from "@/components/molecules/SearchFilter";
+import StatusBadge from "@/components/molecules/StatusBadge";
+import ErrorState from "@/components/molecules/ErrorState";
+import LoadingCard from "@/components/molecules/LoadingCard";
+import Card from "@/components/atoms/Card";
+import Button from "@/components/atoms/Button";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -141,38 +141,39 @@ const Events = () => {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
-      transition={{ duration: 0.3 }}
-      className="space-y-6 max-w-full"
+transition={{ duration: 0.3 }}
+      className="space-y-4 sm:space-y-6 max-w-full"
     >
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <h1 className="text-3xl font-heading font-bold text-gray-900">Events</h1>
-          <p className="text-gray-600 mt-1">Manage your catering events and bookings</p>
+          <h1 className="text-2xl sm:text-3xl font-heading font-bold text-gray-900">Events</h1>
+          <p className="text-sm sm:text-base text-gray-600 mt-1">Manage your catering events and bookings</p>
         </div>
-        
-        <div className="flex items-center gap-3">
+<div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2 xs:gap-3">
           <div className="flex items-center bg-gray-100 rounded-lg p-1">
             <Button
               variant={viewMode === 'list' ? 'primary' : 'ghost'}
               size="sm"
               icon="List"
               onClick={() => setViewMode('list')}
+              className="flex-1 xs:flex-none justify-center min-h-[40px]"
             >
-              List
+              <span className="hidden xs:inline">List</span>
             </Button>
             <Button
               variant={viewMode === 'calendar' ? 'primary' : 'ghost'}
               size="sm"
               icon="Calendar"
               onClick={() => setViewMode('calendar')}
+              className="flex-1 xs:flex-none justify-center min-h-[40px]"
             >
-              Calendar
+              <span className="hidden xs:inline">Calendar</span>
             </Button>
           </div>
-          
-          <Button icon="Plus">
-            New Event
+<Button icon="Plus" className="min-h-[44px]">
+            <span className="hidden xs:inline">New Event</span>
+            <span className="xs:hidden">New</span>
           </Button>
         </div>
       </div>
@@ -209,22 +210,23 @@ const Events = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
             >
-              <Card hover className="relative">
-                <div className="flex items-start justify-between">
+<Card hover className="relative">
+                <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center">
-                        <ApperIcon name="Calendar" size={24} className="text-primary" />
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 bg-primary/10 rounded-xl flex items-center justify-center">
+                        <ApperIcon name="Calendar" size={20} className="text-primary sm:w-6 sm:h-6" />
                       </div>
                       
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900 truncate">
+<div className="flex-1 min-w-0">
+                        <div className="flex flex-col xs:flex-row xs:items-center gap-2 xs:gap-3 mb-2">
+                          <h3 className="text-base sm:text-lg font-semibold text-gray-900 truncate">
                             {event.title}
                           </h3>
                           <StatusBadge status={event.status} />
                         </div>
                         
+                        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600">
                           <div className="flex items-center gap-2">
                             <ApperIcon name="Clock" size={16} />
@@ -253,14 +255,15 @@ const Events = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-2 flex-shrink-0 ml-4">
-                    <Button variant="ghost" size="sm" icon="Edit" />
-                    <Button variant="ghost" size="sm" icon="FileText" />
+<div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+<Button variant="ghost" size="sm" icon="Edit" className="min-h-[40px] w-10 p-0 sm:w-auto sm:px-3" />
+                    <Button variant="ghost" size="sm" icon="FileText" className="min-h-[40px] w-10 p-0 sm:w-auto sm:px-3" />
                     <Button 
                       variant="ghost" 
                       size="sm" 
                       icon="Trash2"
                       onClick={() => handleDeleteEvent(event.Id)}
+                      className="min-h-[40px] w-10 p-0 sm:w-auto sm:px-3"
                     />
                   </div>
                 </div>

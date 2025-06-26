@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import StatCard from '@/components/molecules/StatCard';
-import LoadingCard from '@/components/molecules/LoadingCard';
-import eventService from '@/services/api/eventService';
-import invoiceService from '@/services/api/invoiceService';
-
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import invoiceService from "@/services/api/invoiceService";
+import eventService from "@/services/api/eventService";
+import LoadingCard from "@/components/molecules/LoadingCard";
+import StatCard from "@/components/molecules/StatCard";
 const DashboardStats = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -39,10 +38,9 @@ const DashboardStats = () => {
 
     loadStats();
   }, []);
-
-  if (loading) {
+if (loading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
         {Array.from({ length: 4 }).map((_, i) => (
           <LoadingCard key={i} lines={2} />
         ))}
@@ -50,43 +48,43 @@ const DashboardStats = () => {
     );
   }
 
-  const statCards = [
+const statCards = [
     {
       title: 'Total Revenue',
-      value: `$${stats.totalRevenue.toLocaleString()}`,
+      value: `$${stats?.totalRevenue?.toLocaleString() || '0'}`,
       icon: 'DollarSign',
       color: 'success',
       change: '+12.5% from last month',
       changeType: 'positive'
     },
-    {
+{
       title: 'Upcoming Events',
-      value: stats.upcomingEvents,
+      value: stats?.upcomingEvents || 0,
       icon: 'Calendar',
       color: 'primary',
-      change: `${stats.upcomingEvents > 5 ? 'High' : 'Normal'} activity`,
-      changeType: stats.upcomingEvents > 5 ? 'positive' : 'neutral'
+      change: `${(stats?.upcomingEvents || 0) > 5 ? 'High' : 'Normal'} activity`,
+      changeType: (stats?.upcomingEvents || 0) > 5 ? 'positive' : 'neutral'
     },
     {
       title: 'Pending Invoices',
-      value: stats.pendingInvoices,
+      value: stats?.pendingInvoices || 0,
       icon: 'FileText',
       color: 'warning',
-      change: stats.pendingInvoices > 0 ? 'Requires attention' : 'All clear',
-      changeType: stats.pendingInvoices > 0 ? 'negative' : 'positive'
+      change: (stats?.pendingInvoices || 0) > 0 ? 'Requires attention' : 'All clear',
+      changeType: (stats?.pendingInvoices || 0) > 0 ? 'negative' : 'positive'
     },
     {
       title: 'Completed Events',
-      value: stats.completedEvents,
+      value: stats?.completedEvents || 0,
       icon: 'CheckCircle',
       color: 'accent',
       change: '+8 this month',
       changeType: 'positive'
     }
-  ];
+];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
       {statCards.map((stat, index) => (
         <motion.div
           key={stat.title}

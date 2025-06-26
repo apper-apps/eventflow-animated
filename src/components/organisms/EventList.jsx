@@ -110,28 +110,28 @@ const EventList = ({ title = "Recent Events", limit, showActions = true }) => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card hover className="relative">
-                <div className="flex items-start justify-between">
+<Card hover className="relative">
+                <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <ApperIcon name="Calendar" size={20} className="text-primary" />
+                    <div className="flex items-start gap-2 sm:gap-3">
+                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <ApperIcon name="Calendar" size={16} className="text-primary sm:w-5 sm:h-5" />
                       </div>
                       
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-gray-900 truncate">{event.title}</h3>
-                        <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
+<div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-gray-900 truncate text-sm sm:text-base">{event.title}</h3>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mt-1 text-xs sm:text-sm text-gray-600">
                           <div className="flex items-center gap-1">
-                            <ApperIcon name="Clock" size={14} />
-                            {format(new Date(event.date), 'MMM dd, yyyy • h:mm a')}
+                            <ApperIcon name="Clock" size={12} className="sm:w-3.5 sm:h-3.5" />
+                            <span className="truncate">{format(new Date(event.date), 'MMM dd, yyyy • h:mm a')}</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <ApperIcon name="MapPin" size={14} />
+                            <ApperIcon name="MapPin" size={12} className="sm:w-3.5 sm:h-3.5" />
                             <span className="truncate">{event.location}</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <ApperIcon name="Users" size={14} />
-                            {event.guestCount} guests
+                            <ApperIcon name="Users" size={12} className="sm:w-3.5 sm:h-3.5" />
+                            <span>{event.guestCount} guests</span>
                           </div>
                         </div>
                         
@@ -142,17 +142,17 @@ const EventList = ({ title = "Recent Events", limit, showActions = true }) => {
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-3 flex-shrink-0 ml-4">
+<div className="flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-3 flex-shrink-0">
                     <StatusBadge status={event.status} />
                     <div className="text-right">
-                      <p className="font-semibold text-gray-900">${event.totalCost?.toLocaleString()}</p>
-                      <p className="text-sm text-gray-500">Total</p>
+                      <p className="font-semibold text-gray-900 text-sm sm:text-base">${event.totalCost?.toLocaleString()}</p>
+                      <p className="text-xs sm:text-sm text-gray-500">Total</p>
                     </div>
                     
                     {showActions && (
                       <div className="flex items-center gap-1">
-                        <Button variant="ghost" size="sm" icon="Edit" />
-                        <Button variant="ghost" size="sm" icon="MoreVertical" />
+                        <Button variant="ghost" size="sm" icon="Edit" className="min-h-[36px] w-9 p-0 sm:w-auto sm:px-3" />
+                        <Button variant="ghost" size="sm" icon="MoreVertical" className="min-h-[36px] w-9 p-0 sm:w-auto sm:px-3" />
                       </div>
                     )}
                   </div>

@@ -37,9 +37,9 @@ const QuickActions = () => {
       transition={{ delay: 0.4 }}
     >
       <Card>
-        <h3 className="text-lg font-heading font-semibold text-gray-900 mb-6">Quick Actions</h3>
+<h3 className="text-base sm:text-lg font-heading font-semibold text-gray-900 mb-4 sm:mb-6">Quick Actions</h3>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-3 sm:gap-4">
           {actions.map((action, index) => (
             <motion.div
               key={action.label}
@@ -47,11 +47,11 @@ const QuickActions = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5 + index * 0.1 }}
             >
-              <Button
+<Button
                 variant={action.color}
                 icon={action.icon}
                 onClick={action.onClick}
-                className="w-full justify-start"
+                className="w-full justify-center sm:justify-start min-h-[48px]"
               >
                 {action.label}
               </Button>
