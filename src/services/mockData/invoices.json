@@ -1,0 +1,104 @@
+[
+  {
+    "Id": 1,
+    "eventId": 1,
+    "invoiceNumber": "INV-2024-001",
+    "dateIssued": "2024-01-10T10:00:00Z",
+    "dueDate": "2024-01-25T23:59:59Z",
+    "lineItems": [
+      {
+        "menuItemId": 1,
+        "name": "Grilled Chicken Caesar Salad",
+        "quantity": 12,
+        "unitPrice": 18.50,
+        "total": 222.00
+      },
+      {
+        "menuItemId": 3,
+        "name": "Vegetarian Quinoa Bowl",
+        "quantity": 2,
+        "unitPrice": 16.75,
+        "total": 33.50
+      },
+      {
+        "menuItemId": 5,
+        "name": "Seasonal Fruit Salad",
+        "quantity": 12,
+        "unitPrice": 6.50,
+        "total": 78.00
+      }
+    ],
+    "subtotal": 333.50,
+    "tax": 33.35,
+    "total": 366.85,
+    "status": "paid"
+  },
+  {
+    "Id": 2,
+    "eventId": 3,
+    "invoiceNumber": "INV-2024-002",
+    "dateIssued": "2024-01-15T09:00:00Z",
+    "dueDate": "2024-01-30T23:59:59Z",
+    "lineItems": [
+      {
+        "menuItemId": 7,
+        "name": "Continental Breakfast Spread",
+        "quantity": 8,
+        "unitPrice": 14.25,
+        "total": 114.00
+      },
+      {
+        "menuItemId": 9,
+        "name": "Bagels & Lox Platter",
+        "quantity": 4,
+        "unitPrice": 19.00,
+        "total": 76.00
+      },
+      {
+        "menuItemId": 10,
+        "name": "Fresh Coffee Service",
+        "quantity": 8,
+        "unitPrice": 4.75,
+        "total": 38.00
+      }
+    ],
+    "subtotal": 228.00,
+    "tax": 22.80,
+    "total": 250.80,
+    "status": "pending"
+  },
+  {
+    "Id": 3,
+    "eventId": 2,
+    "invoiceNumber": "INV-2024-003",
+    "dateIssued": "2024-01-12T14:30:00Z",
+    "dueDate": "2024-01-27T23:59:59Z",
+    "lineItems": [
+      {
+        "menuItemId": 2,
+        "name": "Beef Tenderloin Medallions",
+        "quantity": 25,
+        "unitPrice": 42.00,
+        "total": 1050.00
+      },
+      {
+        "menuItemId": 4,
+        "name": "Artisan Cheese Platter",
+        "quantity": 25,
+        "unitPrice": 8.25,
+        "total": 206.25
+      },
+      {
+        "menuItemId": 6,
+        "name": "Chocolate Mousse Cups",
+        "quantity": 25,
+        "unitPrice": 9.75,
+        "total": 243.75
+      }
+    ],
+    "subtotal": 1500.00,
+    "tax": 150.00,
+    "total": 1650.00,
+    "status": "overdue"
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "Id": 1,
+    "name": "Grilled Chicken Caesar Salad",
+    "category": "salads",
+    "price": 18.50,
+    "unit": "per person",
+    "dietary": ["gluten-free-option"],
+    "description": "Fresh romaine lettuce with grilled chicken, parmesan, and house-made caesar dressing"
+  },
+  {
+    "Id": 2,
+    "name": "Beef Tenderloin Medallions",
+    "category": "entrees",
+    "price": 42.00,
+    "unit": "per person",
+    "dietary": ["gluten-free"],
+    "description": "Pan-seared beef tenderloin with roasted vegetables and red wine reduction"
+  },
+  {
+    "Id": 3,
+    "name": "Vegetarian Quinoa Bowl",
+    "category": "entrees",
+    "price": 16.75,
+    "unit": "per person",
+    "dietary": ["vegetarian", "vegan", "gluten-free"],
+    "description": "Quinoa with roasted vegetables, chickpeas, and tahini dressing"
+  },
+  {
+    "Id": 4,
+    "name": "Artisan Cheese Platter",
+    "category": "appetizers",
+    "price": 8.25,
+    "unit": "per person",
+    "dietary": ["vegetarian"],
+    "description": "Selection of local cheeses with crackers, fruits, and nuts"
+  },
+  {
+    "Id": 5,
+    "name": "Seasonal Fruit Salad",
+    "category": "sides",
+    "price": 6.50,
+    "unit": "per person",
+    "dietary": ["vegetarian", "vegan", "gluten-free"],
+    "description": "Fresh seasonal fruits with mint and honey-lime dressing"
+  },
+  {
+    "Id": 6,
+    "name": "Chocolate Mousse Cups",
+    "category": "desserts",
+    "price": 9.75,
+    "unit": "per person",
+    "dietary": ["vegetarian"],
+    "description": "Rich chocolate mousse topped with fresh berries"
+  },
+  {
+    "Id": 7,
+    "name": "Continental Breakfast Spread",
+    "category": "breakfast",
+    "price": 14.25,
+    "unit": "per person",
+    "dietary": ["vegetarian-options"],
+    "description": "Assorted pastries, fresh fruit, yogurt, and coffee service"
+  },
+  {
+    "Id": 8,
+    "name": "Shrimp Cocktail",
+    "category": "appetizers",
+    "price": 12.50,
+    "unit": "per person",
+    "dietary": ["gluten-free"],
+    "description": "Chilled jumbo shrimp with cocktail sauce and lemon"
+  },
+  {
+    "Id": 9,
+    "name": "Bagels & Lox Platter",
+    "category": "breakfast",
+    "price": 19.00,
+    "unit": "per person",
+    "dietary": [],
+    "description": "Assorted bagels with smoked salmon, cream cheese, capers, and onions"
+  },
+  {
+    "Id": 10,
+    "name": "Fresh Coffee Service",
+    "category": "beverages",
+    "price": 4.75,
+    "unit": "per person",
+    "dietary": ["vegetarian", "vegan-options"],
+    "description": "Premium coffee service with cream, sugar, and alternative milk options"
+  },
+  {
+    "Id": 11,
+    "name": "Gourmet Sandwich Platter",
+    "category": "lunch",
+    "price": 15.50,
+    "unit": "per person",
+    "dietary": ["vegetarian-options"],
+    "description": "Assorted gourmet sandwiches with premium meats, cheeses, and vegetables"
+  }
+]
