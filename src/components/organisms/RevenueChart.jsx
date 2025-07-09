@@ -20,7 +20,7 @@ const RevenueChart = () => {
       // Group invoices by month
       const monthlyRevenue = {};
       invoices.forEach(invoice => {
-        const month = new Date(invoice.dateIssued).toLocaleString('default', { 
+const month = new Date(invoice.date_issued).toLocaleString('default', {
           month: 'short', 
           year: 'numeric' 
         });

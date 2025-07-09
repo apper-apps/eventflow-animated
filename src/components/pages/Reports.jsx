@@ -34,8 +34,8 @@ const Reports = () => {
       const startDate = subMonths(now, monthsBack);
 
       // Filter data by date range
-      const filteredInvoices = invoices.filter(inv => 
-        new Date(inv.dateIssued) >= startDate
+const filteredInvoices = invoices.filter(inv =>
+new Date(inv.date_issued) >= startDate
       );
       const filteredEvents = events.filter(event => 
         new Date(event.date) >= startDate
@@ -44,7 +44,7 @@ const Reports = () => {
       // Revenue by month
       const monthlyRevenue = {};
       filteredInvoices.forEach(invoice => {
-        const month = format(new Date(invoice.dateIssued), 'MMM yyyy');
+const month = format(new Date(invoice.date_issued), 'MMM yyyy');
         monthlyRevenue[month] = (monthlyRevenue[month] || 0) + invoice.total;
       });
 
@@ -57,11 +57,11 @@ const Reports = () => {
       // Popular menu items
       const itemPopularity = {};
       filteredEvents.forEach(event => {
-        if (event.menuItems && Array.isArray(event.menuItems)) {
-          event.menuItems.forEach(itemId => {
+if (event.menu_items && Array.isArray(event.menu_items)) {
+          event.menu_items.forEach(itemId => {
             const item = menuItems.find(m => m.Id === itemId);
             if (item) {
-              itemPopularity[item.name] = (itemPopularity[item.name] || 0) + 1;
+              itemPopularity[item.Name] = (itemPopularity[item.Name] || 0) + 1;
             }
           });
         }

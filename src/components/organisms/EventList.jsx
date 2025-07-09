@@ -44,7 +44,7 @@ const EventList = ({ title = "Recent Events", limit, showActions = true }) => {
     try {
       await eventService.update(eventId, { status: newStatus });
       setEvents(events.map(event => 
-        event.Id === eventId ? { ...event, status: newStatus } : event
+event.Id === eventId ? { ...event, status: newStatus } : event
       ));
       toast.success('Event status updated');
     } catch (err) {
@@ -119,7 +119,7 @@ const EventList = ({ title = "Recent Events", limit, showActions = true }) => {
                       </div>
                       
 <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-gray-900 truncate text-sm sm:text-base">{event.title}</h3>
+<h3 className="font-semibold text-gray-900 truncate text-sm sm:text-base">{event.title}</h3>
                         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mt-1 text-xs sm:text-sm text-gray-600">
                           <div className="flex items-center gap-1">
                             <ApperIcon name="Clock" size={12} className="sm:w-3.5 sm:h-3.5" />
@@ -131,7 +131,7 @@ const EventList = ({ title = "Recent Events", limit, showActions = true }) => {
                           </div>
                           <div className="flex items-center gap-1">
                             <ApperIcon name="Users" size={12} className="sm:w-3.5 sm:h-3.5" />
-                            <span>{event.guestCount} guests</span>
+<span>{event.guest_count} guests</span>
                           </div>
                         </div>
                         
@@ -145,7 +145,7 @@ const EventList = ({ title = "Recent Events", limit, showActions = true }) => {
 <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-3 flex-shrink-0">
                     <StatusBadge status={event.status} />
                     <div className="text-right">
-                      <p className="font-semibold text-gray-900 text-sm sm:text-base">${event.totalCost?.toLocaleString()}</p>
+<p className="font-semibold text-gray-900 text-sm sm:text-base">${event.total_cost?.toLocaleString()}</p>
                       <p className="text-xs sm:text-sm text-gray-500">Total</p>
                     </div>
                     

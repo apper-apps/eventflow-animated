@@ -84,7 +84,7 @@ const Events = () => {
     try {
       await eventService.update(eventId, { status: newStatus });
       setEvents(events.map(event =>
-        event.Id === eventId ? { ...event, status: newStatus } : event
+event.Id === eventId ? { ...event, status: newStatus } : event
       ));
       toast.success('Event status updated');
     } catch (err) {
@@ -237,11 +237,11 @@ transition={{ duration: 0.3 }}
                           </div>
                           <div className="flex items-center gap-2">
                             <ApperIcon name="Users" size={16} />
-                            <span>{event.guestCount} guests</span>
+<span>{event.guest_count} guests</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <ApperIcon name="DollarSign" size={16} />
-                            <span>${event.totalCost?.toLocaleString()}</span>
+<span>${event.total_cost?.toLocaleString()}</span>
                           </div>
                         </div>
                         

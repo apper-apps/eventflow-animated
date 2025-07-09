@@ -16,7 +16,7 @@ const DashboardStats = () => {
           invoiceService.getAll()
         ]);
 
-        const totalRevenue = invoices.reduce((sum, inv) => sum + inv.total, 0);
+const totalRevenue = invoices.reduce((sum, inv) => sum + (inv.total || 0), 0);
         const upcomingEvents = events.filter(e => 
           new Date(e.date) >= new Date() && e.status !== 'cancelled'
         ).length;

@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
-import invoiceService from "@/services/api/invoiceService";
 import ApperIcon from "@/components/ApperIcon";
-import EmptyState from "@/components/molecules/EmptyState";
+import Button from "@/components/atoms/Button";
+import Card from "@/components/atoms/Card";
 import SearchFilter from "@/components/molecules/SearchFilter";
 import StatusBadge from "@/components/molecules/StatusBadge";
-import ErrorState from "@/components/molecules/ErrorState";
+import EmptyState from "@/components/molecules/EmptyState";
 import LoadingCard from "@/components/molecules/LoadingCard";
-import Card from "@/components/atoms/Card";
-import Button from "@/components/atoms/Button";
+import ErrorState from "@/components/molecules/ErrorState";
+import invoiceService from "@/services/api/invoiceService";
 
 const Invoices = () => {
   const [invoices, setInvoices] = useState([]);
@@ -52,12 +52,12 @@ const Invoices = () => {
   const filterInvoices = () => {
     let filtered = [...invoices];
 
-    // Search filter
+// Search filter
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(invoice =>
-        invoice.invoiceNumber.toLowerCase().includes(term) ||
-        invoice.eventId.toString().includes(term)
+        (invoice.invoiceNumber || invoice.invoice_number || '').toLowerCase().includes(term) ||
+        (invoice.eventId || invoice.event_id || '').toString().toLowerCase().includes(term)
       );
     }
 
@@ -80,8 +80,8 @@ const Invoices = () => {
   const handleStatusChange = async (invoiceId, newStatus) => {
     try {
       await invoiceService.update(invoiceId, { status: newStatus });
-      setInvoices(invoices.map(invoice =>
-        invoice.Id === invoiceId ? { ...invoice, status: newStatus } : invoice
+setInvoices(invoices.map(invoice =>
+        (invoice.Id || invoice.id) === invoiceId ? { ...invoice, status: newStatus } : invoice
       ));
       toast.success('Invoice status updated');
     } catch (err) {
@@ -91,12 +91,12 @@ const Invoices = () => {
 
   const handleDownloadInvoice = (invoice) => {
     // Simulate PDF download
-    toast.info(`Downloading ${invoice.invoiceNumber}.pdf`);
+toast.info(`Downloading ${invoice.invoice_number || invoice.invoiceNumber || 'invoice'}.pdf`);
   };
 
   const handleSendInvoice = (invoice) => {
     // Simulate sending invoice
-    toast.success(`Invoice ${invoice.invoiceNumber} sent successfully`);
+toast.success(`Invoice ${invoice.invoice_number || invoice.invoiceNumber || 'invoice'} sent successfully`);
   };
 
   if (loading) {
@@ -170,18 +170,18 @@ transition={{ duration: 0.3 }}
         {[
           {
             label: 'Total Outstanding',
-            value: `$${filteredInvoices
+value: `$${filteredInvoices
               .filter(i => i.status === 'pending' || i.status === 'overdue')
-              .reduce((sum, i) => sum + i.total, 0)
+              .reduce((sum, i) => sum + (i.total || 0), 0)
               .toLocaleString()}`,
             icon: 'AlertCircle',
             color: 'warning'
           },
           {
             label: 'Paid This Month',
-            value: `$${filteredInvoices
+value: `$${filteredInvoices
               .filter(i => i.status === 'paid')
-              .reduce((sum, i) => sum + i.total, 0)
+              .reduce((sum, i) => sum + (i.total || 0), 0)
               .toLocaleString()}`,
             icon: 'CheckCircle',
             color: 'success'
@@ -238,7 +238,7 @@ transition={{ duration: 0.3 }}
         <div className="space-y-4">
           {filteredInvoices.map((invoice, index) => (
             <motion.div
-              key={invoice.Id}
+key={invoice.Id || invoice.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
@@ -254,7 +254,7 @@ transition={{ duration: 0.3 }}
 <div className="flex-1 min-w-0">
                         <div className="flex flex-col xs:flex-row xs:items-center gap-2 xs:gap-3 mb-2">
                           <h3 className="text-base sm:text-lg font-semibold text-gray-900">
-                            {invoice.invoiceNumber}
+{invoice.invoice_number || invoice.invoiceNumber}
                           </h3>
                           <StatusBadge status={invoice.status} />
 </div>
@@ -262,34 +262,34 @@ transition={{ duration: 0.3 }}
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600">
                           <div className="flex items-center gap-2">
                             <ApperIcon name="Calendar" size={16} />
-                            <span>Issued: {format(new Date(invoice.dateIssued), 'MMM dd, yyyy')}</span>
+<span>Issued: {format(new Date(invoice.date_issued || invoice.dateIssued), 'MMM dd, yyyy')}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <ApperIcon name="Clock" size={16} />
-                            <span>Due: {format(new Date(invoice.dueDate), 'MMM dd, yyyy')}</span>
+<span>Due: {format(new Date(invoice.due_date || invoice.dueDate), 'MMM dd, yyyy')}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <ApperIcon name="Hash" size={16} />
-                            <span>Event ID: {invoice.eventId}</span>
+<span>Event ID: {invoice.event_id || invoice.eventId}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <ApperIcon name="Package" size={16} />
-                            <span>{invoice.lineItems.length} items</span>
+<span>{invoice.line_items?.length || 0} items</span>
                           </div>
                         </div>
                         
                         <div className="mt-3 space-y-1">
                           <div className="flex justify-between text-sm">
                             <span className="text-gray-600">Subtotal:</span>
-                            <span>${invoice.subtotal.toFixed(2)}</span>
+<span>${(invoice.subtotal || 0).toFixed(2)}</span>
                           </div>
                           <div className="flex justify-between text-sm">
                             <span className="text-gray-600">Tax:</span>
-                            <span>${invoice.tax.toFixed(2)}</span>
+<span>${(invoice.tax || 0).toFixed(2)}</span>
                           </div>
                           <div className="flex justify-between font-semibold text-lg border-t pt-1">
                             <span>Total:</span>
-                            <span className="text-primary">${invoice.total.toFixed(2)}</span>
+<span className="text-primary">${(invoice.total || 0).toFixed(2)}</span>
                           </div>
                         </div>
                       </div>
@@ -297,7 +297,7 @@ transition={{ duration: 0.3 }}
                   </div>
                   
 <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-<Button 
+<Button
                       variant="ghost" 
                       size="sm" 
                       icon="Download"
